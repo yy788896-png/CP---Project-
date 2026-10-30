@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Super Market Management System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div><h1>Super Market Management System</h1><p>Billing • Inventory • Sales Reports</p></div>
+    <span class="status">Admin Dashboard</span>
+  </header>
+  <nav class="nav">
+    <button class="active" data-tab="dashboard">Dashboard</button>
+    <button data-tab="products">Products</button>
+    <button data-tab="billing">Billing</button>
+    <button data-tab="inventory">Inventory</button>
+    <button data-tab="sales">Sales</button>
+  </nav>
+  <main>
+    <section id="dashboard" class="tab show">
+      <h2>Dashboard</h2>
+      <div class="stats">
+        <article><span>Total Products</span><strong id="productCount">0</strong></article>
+        <article><span>Units in Stock</span><strong id="stockCount">0</strong></article>
+        <article><span>Today's Sales</span><strong id="todaySales">₹0.00</strong></article>
+        <article><span>Low Stock Items</span><strong id="lowCount">0</strong></article>
+      </div>
+      <div class="panel"><h3>Low Stock Alert</h3><div id="dashboardLow" class="muted">No low-stock products.</div></div>
+      <p class="note">Demo application: data is saved in this browser using local storage.</p>
+    </section>
+
+    <section id="products" class="tab">
+      <h2>Product Management</h2>
+      <form id="productForm" class="panel form-grid">
+        <input id="pName" placeholder="Product name" required>
+        <input id="pCategory" placeholder="Category" required>
+        <input id="pPrice" type="number" min="0.01" step="0.01" placeholder="Unit price (₹)" required>
+        <input id="pQty" type="number" min="0" step="1" placeholder="Opening quantity" required>
+        <input id="pReorder" type="number" min="0" step="1" placeholder="Reorder level" value="5" required>
+        <button class="primary" type="submit">Add Product</button>
+      </form>
+      <div class="panel"><div class="table-wrap"><table><thead><tr><th>Code</th><th>Product</th><th>Category</th><th>Price</th><th>Quantity</th><th>Action</th></tr></thead><tbody id="productRows"></tbody></table></div></div>
+    </section>
+
+    <section id="billing" class="tab">
+      <h2>Billing & Sales Processing</h2>
+      <div class="panel form-grid">
+        <select id="billProduct"><option value="">Select product</option></select>
+        <input id="billQty" type="number" min="1" step="1" value="1" placeholder="Quantity">
+        <button id="addToBill" class="primary">Add to Bill</button>
+      </div>
+      <div class="panel">
+        <h3>Current Bill</h3>
+        <div class="table-wrap"><table><thead><tr><th>Product</th><th>Qty</th><th>Unit Price</th><th>Total</th><th></th></tr></thead><tbody id="billRows"></tbody></table></div>
+        <div class="bill-total">Grand Total: <strong id="billTotal">₹0.00</strong></div>
+        <button id="completeSale" class="primary">Complete Sale & Update Stock</button>
+        <button id="clearBill" class="secondary">Clear Bill</button>
+      </div>
+    </section>
+
+    <section id="inventory" class="tab">
+      <h2>Inventory Management</h2>
+      <div class="panel"><p class="muted">Stock decreases automatically after a completed sale. Use the stock addition action to record deliveries.</p>
+        <div class="table-wrap"><table><thead><tr><th>Product</th><th>Current Stock</th><th>Reorder Level</th><th>Status</th><th>Add Stock</th></tr></thead><tbody id="inventoryRows"></tbody></table></div>
+      </div>
+    </section>
+
+    <section id="sales" class="tab">
+      <h2>Sales History</h2>
+      <div class="panel"><div class="table-wrap"><table><thead><tr><th>Receipt No.</th><th>Date & Time</th><th>Items</th><th>Total</th></tr></thead><tbody id="salesRows"></tbody></table></div></div>
+    </section>
+  </main>
+  <footer>Super Market Management System • Academic Project Demo</footer>
+  <script src="script.js"></script>
+</body>
+</html>
